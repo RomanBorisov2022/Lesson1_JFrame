@@ -89,4 +89,43 @@ public class Map extends JPanel {
             g.drawLine(x, 0, x, panelHeigth);
         }
     }
+
+    private boolean checkWin(char c) {
+        // Проверка по горизонтали и вертикали
+        for (int i = 0; i < field.length; i++) {
+            boolean rowWin = true;
+            boolean colWin = true;
+
+            for (int j = 0; j < field[i].length; j++) {
+                if (field[i][j] != c) {
+                    rowWin = false;
+                }
+
+                if (field[j][i] != c) {
+                    colWin = false;
+                }
+            }
+
+            if (rowWin || colWin) {
+                return true;
+            }
+        }
+
+        // Проверка диагоналей
+        boolean diag1Win = true;
+        boolean diag2Win = true;
+
+        for (int i = 0; i < field.length; i++) {
+            if (field[i][i] != c) {
+                diag1Win = false;
+            }
+
+            if (field[i][field[i].length - 1 - i] != c) {
+                diag2Win = false;
+            }
+        }
+
+        return diag1Win || diag2Win;
+    }
+
 }
