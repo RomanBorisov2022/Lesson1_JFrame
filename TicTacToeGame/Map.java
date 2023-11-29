@@ -4,8 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class Map extends JPanel {
+    private static final Random RANDOM = new Random();
+    private final int HUMAN_DOT = 1;
+    private final int AI_DOT = 2;
+    private final int EMPTY_DOT = 0;
+    private int fieldSizeY = 3;
+    private int fieldSizeX = 3;
+    private  char[][] field;
+
+    private void initMap(){
+        fieldSizeY = 3;
+        fieldSizeX = 3;
+        field = new char[fieldSizeY][fieldSizeX];
+        for (int i = 0; i < fieldSizeY; i++) {
+            for (int j = 0; j < fieldSizeX; j++) {
+                field[i][j] = EMPTY_DOT;
+            }
+        }
+    }
+
     private int panelWidth;
     private int panelHeigth;
     private int cellHeigth;
