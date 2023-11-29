@@ -66,8 +66,10 @@ public class Map extends JPanel {
                 update(e);
             }
         });
+        isInitialized = false;
     }
     private void update(MouseEvent e){
+        if(isGameOver || !isInitialized) return;
         int cellX = e.getX()/cellWidth;
         int cellY = e.getY()/cellHeigth;
         if(!isValidCell(cellX, cellY) || !isEmptyCell(cellX, cellY)) return;
@@ -78,13 +80,16 @@ public class Map extends JPanel {
         if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;
     }
     private boolean checkEndGame(int dot, int gameOverType) {
+
         if (checkWin((char) dot)) {
             this.gameOverType = gameOverType;
+            isGameOver = true;
             repaint();
             return true;
         }
         if (isMapFull()) {
             this.gameOverType = STATE_DRAW;
+            isGameOver = true;
             repaint();
             return true;
         }
@@ -92,6 +97,9 @@ public class Map extends JPanel {
     }
     void startNewGame(int mode, int fSzX, int fSzY, int wLen) {
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d\nWin Length: %d", mode, fSzX, fSzY, wLen);
+        initMap();
+        isGameOver = false;
+        isInitialized = true;
         repaint();
     }
 
@@ -102,6 +110,7 @@ public class Map extends JPanel {
     }
 
     private void render(Graphics g){
+        if(!isInitialized) return;
 
         for (int y = 0; y < fieldSizeY; y++) {
             for (int x = 0; x < fieldSizeX; x++) {
@@ -153,6 +162,7 @@ public class Map extends JPanel {
             default: throw new RuntimeException("Unexpected gameOver state: " + gameOverType);
         }
     }
+
 
     private boolean checkWin(char c) {
         // Проверка по горизонтали и вертикали
