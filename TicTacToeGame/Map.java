@@ -26,6 +26,13 @@ public class Map extends JPanel {
         }
     }
 
+    private boolean isValidCell(int x, int y) {
+        return x >= 0 && x < fieldSizeX && y >= 0 && y < fieldSizeY;
+    }
+    private boolean isEmptyCell(int x, int y) {
+        return field[y][x] == EMPTY_DOT;
+    }
+
     private int panelWidth;
     private int panelHeigth;
     private int cellHeigth;
