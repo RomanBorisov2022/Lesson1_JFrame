@@ -57,7 +57,8 @@ public class Map extends JPanel {
     private void update(MouseEvent e){
         int cellX = e.getX()/cellWidth;
         int cellY = e.getY()/cellHeigth;
-        System.out.printf("x=%d, y=%d\n", cellX, cellY);
+        if(!isValidCell(cellX, cellY) || !isEmptyCell(cellX, cellY)) return;
+        field[cellX][cellY] = HUMAN_DOT;
         repaint();
     }
 
