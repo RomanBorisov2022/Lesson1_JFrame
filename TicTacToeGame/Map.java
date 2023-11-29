@@ -19,6 +19,9 @@ public class Map extends JPanel {
         });
     }
     private void update(MouseEvent e){
+        int cellX = e.getX()/cellWidth;
+        int cellY = e.getY()/cellHeigth;
+        System.out.printf("x=%d, y=%d\n", cellX, cellY);
         repaint();
     }
 
