@@ -128,4 +128,13 @@ public class Map extends JPanel {
         return diag1Win || diag2Win;
     }
 
+    private boolean isMapFull() {
+        for (int i = 0; i < fieldSizeY; i++) {
+            for (int j = 0; j < fieldSizeX; j++) {
+                if(field[i][j] ==EMPTY_DOT) return false;
+            }
+        }
+        return true;
+    }
+
 }
