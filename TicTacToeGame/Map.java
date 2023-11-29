@@ -75,6 +75,17 @@ public class Map extends JPanel {
 
     private void render(Graphics g){
 
+        for (int y = 0; y < fieldSizeY; y++) {
+            for (int x = 0; x < fieldSizeX; x++) {
+                if(field[y][x] == EMPTY_DOT) continue;
+                if(field[y][x] == HUMAN_DOT) {
+                } else if (field[y][x] == AI_DOT) {
+                } else{
+                    throw new RuntimeException("Unexpected value " + field[x][y] + "in cell: " + x + " y=" + y);
+                }
+            }
+        }
+
         panelWidth = getWidth();
         panelHeigth = getHeight();
         cellHeigth = panelHeigth / 3;
