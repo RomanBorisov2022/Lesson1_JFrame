@@ -10,10 +10,4 @@ public class Main {
         new GameWindow();
         System.out.println("Method main() is over");
     }
-
-    public static class Map extends JPanel {
-        Map(){
-            setBackground(Color.BLACK);
-        }
-    }
 }
