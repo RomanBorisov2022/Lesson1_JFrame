@@ -8,12 +8,25 @@ import java.util.Random;
 
 public class Map extends JPanel {
     private static final Random RANDOM = new Random();
+    private static final int DOT_PADDING = 5;
+
+    private int gameOverType;
+    private static final int STATE_DRAW = 0;
+    private static final int STATE_WIN_HUMAN = 1;
+    private static final int STATE_WIN_AI = 2;
+
+    private static final String MSG_WIN_HUMAN = "Победил игрок!";
+    private static final String MSG_WIN_AI = "Победил компьютер!";
+    private static final String MSG_DRAW = "Ничья!";
     private final int HUMAN_DOT = 1;
     private final int AI_DOT = 2;
     private final int EMPTY_DOT = 0;
     private int fieldSizeY = 3;
     private int fieldSizeX = 3;
     private  char[][] field;
+
+    private boolean isGameOver;
+    private boolean isInitialized;
 
     private void initMap(){
         fieldSizeY = 3;
@@ -59,9 +72,24 @@ public class Map extends JPanel {
         int cellY = e.getY()/cellHeigth;
         if(!isValidCell(cellX, cellY) || !isEmptyCell(cellX, cellY)) return;
         field[cellX][cellY] = HUMAN_DOT;
+        if (checkEndGame(HUMAN_DOT, STATE_WIN_HUMAN)) return;
+        aiTurn();
         repaint();
+        if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;
     }
-
+    private boolean checkEndGame(int dot, int gameOverType) {
+        if (checkWin((char) dot)) {
+            this.gameOverType = gameOverType;
+            repaint();
+            return true;
+        }
+        if (isMapFull()) {
+            this.gameOverType = STATE_DRAW;
+            repaint();
+            return true;
+        }
+        return false;
+    }
     void startNewGame(int mode, int fSzX, int fSzY, int wLen) {
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d\nWin Length: %d", mode, fSzX, fSzY, wLen);
         repaint();
@@ -79,11 +107,22 @@ public class Map extends JPanel {
             for (int x = 0; x < fieldSizeX; x++) {
                 if(field[y][x] == EMPTY_DOT) continue;
                 if(field[y][x] == HUMAN_DOT) {
+                    g.setColor(Color.GREEN);
+                    g.fillOval(x * cellWidth + DOT_PADDING,
+                            y * cellHeigth + DOT_PADDING,
+                            cellWidth - DOT_PADDING * 2,
+                            cellHeigth - DOT_PADDING * 2);
                 } else if (field[y][x] == AI_DOT) {
-                } else{
+                    g.setColor(new Color(0xff0000));
+                    g.fillOval(x * cellWidth + DOT_PADDING,
+                            y * cellHeigth + DOT_PADDING,
+                            cellWidth - DOT_PADDING * 2,
+                            cellHeigth - DOT_PADDING * 2);
+                } else {
                     throw new RuntimeException("Unexpected value " + field[x][y] + "in cell: " + x + " y=" + y);
                 }
             }
+            if (isGameOver) showMessageGameOver(g);
         }
 
         panelWidth = getWidth();
@@ -99,6 +138,19 @@ public class Map extends JPanel {
         for (int w = 0; w < 3; w++) {
             int x = w * cellWidth;
             g.drawLine(x, 0, x, panelHeigth);
+        }
+    }
+
+    private void showMessageGameOver(Graphics g) {
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(0, 200, getWidth(), 70);
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Times new roman", Font.BOLD, 48));
+        switch (gameOverType) {
+            case STATE_DRAW: g.drawString(MSG_DRAW, 180, getHeight() / 2); break;
+            case STATE_WIN_AI: g.drawString(MSG_WIN_AI, 20, getHeight() / 2); break;
+            case STATE_WIN_HUMAN: g.drawString(MSG_WIN_HUMAN, 70, getHeight() / 2); break;
+            default: throw new RuntimeException("Unexpected gameOver state: " + gameOverType);
         }
     }
 
