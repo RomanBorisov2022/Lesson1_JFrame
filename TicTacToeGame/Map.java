@@ -26,6 +26,15 @@ public class Map extends JPanel {
         }
     }
 
+    private void aiTurn() {
+        int x, y;
+        do{
+            x = RANDOM.nextInt(fieldSizeX);
+            y = RANDOM.nextInt(fieldSizeY);
+        } while (!isEmptyCell(x, y));
+        field[x][y] = AI_DOT;
+    }
+
     private boolean isValidCell(int x, int y) {
         return x >= 0 && x < fieldSizeX && y >= 0 && y < fieldSizeY;
     }
