@@ -85,7 +85,7 @@ public class Map extends JPanel {
     }
 
     private boolean isEmptyCell(int x, int y) {
-        return field[x][y] == EMPTY_DOT;
+        return field[y][x] == EMPTY_DOT;
     }
 
     private int panelWidth;
@@ -216,7 +216,7 @@ public class Map extends JPanel {
                     rowWin = false;
                 }
 
-                if (field[i][j] != c) {
+                if (field[j][i] != c) {
                     colWin = false;
                 }
             }
