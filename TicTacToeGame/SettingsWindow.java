@@ -1,4 +1,5 @@
 package TicTacToeGame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,8 +7,9 @@ import java.awt.event.ActionListener;
 public class SettingsWindow extends JFrame {
     private static final int WINDOW_HEIGTH = 230;
     public static final int WINDOW_WIDTH = 350;
-    JButton btnStart = new JButton ("Start New Game");
-    SettingsWindow(GameWindow gameWindow){
+    JButton btnStart = new JButton("Start New Game");
+
+    SettingsWindow(GameWindow gameWindow) {
         setLocationRelativeTo(gameWindow);
         setSize(WINDOW_WIDTH, WINDOW_HEIGTH);
         btnStart.addActionListener(new ActionListener() {

@@ -23,12 +23,12 @@ public class Map extends JPanel {
     private final int EMPTY_DOT = 0;
     private int fieldSizeY = 3;
     private int fieldSizeX = 3;
-    private  char[][] field;
+    private char[][] field;
 
     private boolean isGameOver;
     private boolean isInitialized;
 
-    private void initMap(){
+    private void initMap() {
         fieldSizeY = 3;
         fieldSizeX = 3;
         field = new char[fieldSizeY][fieldSizeX];
@@ -44,7 +44,7 @@ public class Map extends JPanel {
 /*        if (turnAIWinCell()) return;
         if (turnHumanWinCell()) return;*/
         int x, y;
-        do{
+        do {
             x = RANDOM.nextInt(fieldSizeX);
             y = RANDOM.nextInt(fieldSizeY);
         } while (!isEmptyCell(x, y));
@@ -83,6 +83,7 @@ public class Map extends JPanel {
     private boolean isValidCell(int x, int y) {
         return x >= 0 && x < fieldSizeX && y >= 0 && y < fieldSizeY;
     }
+
     private boolean isEmptyCell(int x, int y) {
         return field[x][y] == EMPTY_DOT;
     }
@@ -91,15 +92,17 @@ public class Map extends JPanel {
     private int panelHeight;
     private int cellHeight;
     private int cellWidth;
+
     Map() {
         addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e){
+            public void mouseReleased(MouseEvent e) {
                 update(e);
             }
         });
         isInitialized = false;
     }
+
     private void update(MouseEvent e) {
         if (isGameOver || !isInitialized) return;
 
@@ -111,7 +114,7 @@ public class Map extends JPanel {
         if (checkEndGame(HUMAN_DOT, STATE_WIN_HUMAN)) return;
         aiTurn();
         repaint();
-        if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;
+        /*if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;*/
     }
 
 
@@ -131,6 +134,7 @@ public class Map extends JPanel {
         }
         return false;
     }
+
     void startNewGame(int mode, int fSzX, int fSzY, int wLen) {
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d\nWin Length: %d", mode, fSzX, fSzY, wLen);
         initMap();
@@ -180,17 +184,23 @@ public class Map extends JPanel {
     }
 
 
-
     private void showMessageGameOver(Graphics g) {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 200, getWidth(), 70);
         g.setColor(Color.YELLOW);
         g.setFont(new Font("Times new roman", Font.BOLD, 48));
         switch (gameOverType) {
-            case STATE_DRAW: g.drawString(MSG_DRAW, 180, getHeight() / 2); break;
-            case STATE_WIN_AI: g.drawString(MSG_WIN_AI, 20, getHeight() / 2); break;
-            case STATE_WIN_HUMAN: g.drawString(MSG_WIN_HUMAN, 70, getHeight() / 2); break;
-            default: throw new RuntimeException("Unexpected gameOver state: " + gameOverType);
+            case STATE_DRAW:
+                g.drawString(MSG_DRAW, 180, getHeight() / 2);
+                break;
+            case STATE_WIN_AI:
+                g.drawString(MSG_WIN_AI, 20, getHeight() / 2);
+                break;
+            case STATE_WIN_HUMAN:
+                g.drawString(MSG_WIN_HUMAN, 70, getHeight() / 2);
+                break;
+            default:
+                throw new RuntimeException("Unexpected gameOver state: " + gameOverType);
         }
     }
 
@@ -237,7 +247,7 @@ public class Map extends JPanel {
     private boolean isMapFull() {
         for (int i = 0; i < fieldSizeY; i++) {
             for (int j = 0; j < fieldSizeX; j++) {
-                if(field[i][j] == EMPTY_DOT) return false;
+                if (field[i][j] == EMPTY_DOT) return false;
             }
         }
         return true;

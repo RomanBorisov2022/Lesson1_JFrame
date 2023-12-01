@@ -2,7 +2,7 @@ package TicTacToeGame;
 
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new GameWindow();
         System.out.println("Method main() is over");
     }

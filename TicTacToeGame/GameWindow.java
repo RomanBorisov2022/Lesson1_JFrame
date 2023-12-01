@@ -16,6 +16,7 @@ public class GameWindow extends JFrame {
 
     Map map;
     SettingsWindow settings;
+
     GameWindow() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(WINDOW_POSX, WINDOW_POSY);
