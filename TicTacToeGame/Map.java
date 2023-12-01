@@ -28,6 +28,11 @@ public class Map extends JPanel {
     private boolean isGameOver;
     private boolean isInitialized;
 
+    private int panelWidth;
+    private int panelHeight;
+    private int cellHeight;
+    private int cellWidth;
+
     private void initMap() {
         fieldSizeY = 3;
         fieldSizeX = 3;
@@ -88,10 +93,6 @@ public class Map extends JPanel {
         return field[y][x] == EMPTY_DOT;
     }
 
-    private int panelWidth;
-    private int panelHeight;
-    private int cellHeight;
-    private int cellWidth;
 
     Map() {
         addMouseListener(new MouseAdapter() {
@@ -245,8 +246,6 @@ public class Map extends JPanel {
 
         return diag1Win || diag2Win;
     }
-
-
 
 
     private boolean isMapFull() {
