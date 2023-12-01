@@ -111,10 +111,13 @@ public class Map extends JPanel {
 
         if (!isValidCell(cellX, cellY) || !isEmptyCell(cellX, cellY)) return;
         field[cellY][cellX] = HUMAN_DOT;
+
         if (checkEndGame(HUMAN_DOT, STATE_WIN_HUMAN)) return;
+
         aiTurn();
+        if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;
+
         repaint();
-        /*if (checkEndGame(AI_DOT, STATE_WIN_AI)) return;*/
     }
 
 
