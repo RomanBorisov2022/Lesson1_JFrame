@@ -50,7 +50,7 @@ public class WindowChatClient extends JFrame {
         btnSend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                message = msgField.getText();
+                message = loginField.getText() + ": " + msgField.getText() + "\n";
                 areaMessage.append(message);
                 System.out.println("Отправлено: " + message);
             }
