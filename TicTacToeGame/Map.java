@@ -48,7 +48,7 @@ public class Map extends JPanel {
             x = RANDOM.nextInt(fieldSizeX);
             y = RANDOM.nextInt(fieldSizeY);
         } while (!isEmptyCell(x, y));
-        field[x][y] = AI_DOT;
+        field[y][x] = AI_DOT;
     }
 
 /*    private boolean turnAIWinCell(){
@@ -216,7 +216,7 @@ public class Map extends JPanel {
                     rowWin = false;
                 }
 
-                if (field[j][i] != c) {
+                if (field[j][i] != c) {  // Исправлено условие для вертикальных линий
                     colWin = false;
                 }
             }
@@ -242,6 +242,8 @@ public class Map extends JPanel {
 
         return diag1Win || diag2Win;
     }
+
+
 
 
     private boolean isMapFull() {
