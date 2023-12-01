@@ -21,8 +21,8 @@ public class Map extends JPanel {
     private final int HUMAN_DOT = 1;
     private final int AI_DOT = 2;
     private final int EMPTY_DOT = 0;
-    private int fieldSizeY = 3;
-    private int fieldSizeX = 3;
+    private int fieldSizeY;
+    private int fieldSizeX;
     private char[][] field;
 
     private boolean isGameOver;
@@ -34,8 +34,6 @@ public class Map extends JPanel {
     private int cellWidth;
 
     private void initMap() {
-        fieldSizeY = 3;
-        fieldSizeX = 3;
         field = new char[fieldSizeY][fieldSizeX];
         for (int i = 0; i < fieldSizeY; i++) {
             for (int j = 0; j < fieldSizeX; j++) {
@@ -140,6 +138,8 @@ public class Map extends JPanel {
     }
 
     void startNewGame(int mode, int fSzX, int fSzY, int wLen) {
+        fieldSizeY = fSzY;
+        fieldSizeX = fSzX;
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d\nWin Length: %d", mode, fSzX, fSzY, wLen);
         initMap();
         isGameOver = false;
