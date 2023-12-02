@@ -1,4 +1,4 @@
-package TicTacToeGame;
+package Lesson1;
 
 import javax.swing.*;
 import java.awt.*;
