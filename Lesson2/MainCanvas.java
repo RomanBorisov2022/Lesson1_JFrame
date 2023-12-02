@@ -7,16 +7,14 @@ public class MainCanvas extends JPanel {
     private final MainWindow controller;
     private long lastFrameTime;
 
-    MainCanvas(MainWindow mainWindow) {
-        setBackground(Color.BLUE);
-        this.controller = mainWindow;
+    MainCanvas(MainWindow controller) {
+        this.controller = controller;
         lastFrameTime = System.nanoTime();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        controller.onDrawFrame(this, g, 16);
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
