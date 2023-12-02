@@ -1,6 +1,7 @@
 package Lesson2;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainWindow extends JFrame {
     private static final int POS_X = 400;
@@ -13,10 +14,27 @@ public class MainWindow extends JFrame {
         setBounds(POS_X, POS_Y, WINDOW_WIDTH, WINDOW_HEIGHT);
         setTitle("Circles");
 
+        MainCanvas canvas = new MainCanvas(this);
+        add(canvas);
         setVisible(true);
     }
 
     public static void main(String[] args) {
         new MainWindow();
     }
+
+    public void onDrawFrame(MainCanvas canvas, Graphics g, float deltaTime) {
+        update(canvas, deltaTime);
+        render(canvas, g);
+    }
+
+    private void update(MainCanvas canvas, float deltaTime) {
+    }
+
+    ;
+
+    private void render(MainCanvas canvas, Graphics g) {
+    }
+
+    ;
 }
