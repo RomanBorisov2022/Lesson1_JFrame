@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Lesson1_JFrame.iml" filepath="$PROJECT_DIR$/.idea/Lesson1_JFrame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Lessons_JFrame_Swing.iml" filepath="$PROJECT_DIR$/.idea/Lessons_JFrame_Swing.iml" />
     </modules>
   </component>
 </project>
