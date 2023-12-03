@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
     private static final int POS_Y = 200;
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 600;
-    private final Sprite[] sprites = new Sprite[10];
+    private final Sprite[] sprites = new Sprite[100];
 
     private MainWindow() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
