@@ -33,5 +33,10 @@ public class Main {
         myList1.addElement(3);
         myList1.addElement(6);
         myList1.printList();
+        System.out.println("\n");
+        for (Number number :
+                myList1) {
+            System.out.println(number);
+        }
     }
 }
