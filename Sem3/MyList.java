@@ -1,7 +1,7 @@
 package Sem3;
 
 public class MyList<E> {
-    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+    Object[] initArray = {};
     private E[] array;
     private int size;
 
@@ -9,10 +9,14 @@ public class MyList<E> {
         this.array = baseArray;
         size = array.length;
     }
+    public MyList(){
+        this.array = (E[]) initArray;
+        size = 0;
+    }
 
     public <T extends E> void addElement(T element) {
         if (size == array.length) {
-            Object[] newArray = new Object[array.length * 2];
+            Object[] newArray = new Object[array.length + 1];
             System.arraycopy(array, 0, newArray, 0, array.length);
             newArray[array.length] = element;
             array = (E[]) newArray;
