@@ -13,7 +13,7 @@ public class MyList<E> {
     public <T extends E> void addElement(T element) {
         if (size == array.length) {
             Object[] newArray = new Object[array.length * 2];
-            System.arraycopy(array, 0, newArray,0, array.length);
+            System.arraycopy(array, 0, newArray, 0, array.length);
             newArray[array.length] = element;
             array = (E[]) newArray;
         } else {
@@ -21,8 +21,26 @@ public class MyList<E> {
         }
         size++;
     }
-    public void printList(){
-        for(E element: array) {
+
+    public void removeElement(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+        System.arraycopy(array, index + 1, array, index, size - index - 1);
+        array[size - 1] = null;
+        size--;
+    }
+
+    public int getArrayLength() {
+        return array.length;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void printList() {
+        for (E element : array) {
             System.out.println(element);
         }
     }

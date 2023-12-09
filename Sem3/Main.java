@@ -16,5 +16,14 @@ public class Main {
         numArray[2] = 1565765876L;
         MyList<Number> myList = new MyList<>(numArray);
         myList.printList();
+
+        Integer num = 5;
+        myList.addElement(num);
+        myList.printList();
+        System.out.println("Length: " + myList.getArrayLength());
+        System.out.println("Size: " + myList.getSize());
+
+        myList.removeElement(2);
+        myList.printList();
     }
 }
