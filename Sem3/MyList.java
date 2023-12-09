@@ -1,6 +1,9 @@
 package Sem3;
 
-public class MyList<E> {
+
+import java.util.Iterator;
+
+public class MyList<E> implements Iterable<E> {
     Object[] initArray = {};
     private E[] array;
     private int size;
@@ -9,7 +12,8 @@ public class MyList<E> {
         this.array = baseArray;
         size = array.length;
     }
-    public MyList(){
+
+    public MyList() {
         this.array = (E[]) initArray;
         size = 0;
     }
@@ -47,5 +51,26 @@ public class MyList<E> {
         for (E element : array) {
             System.out.println(element);
         }
+    }
+    class MyListIterator implements Iterator<E> {
+        int index;
+
+        public MyListIterator() {
+            this.index = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public E next() {
+            return array[index++];
+        }
+    }
+    @Override
+    public Iterator<E> iterator() {
+        return new MyListIterator();
     }
 }
