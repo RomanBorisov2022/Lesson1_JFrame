@@ -9,5 +9,12 @@ public class Main {
         Integer k = new Integer(1);
         Class1<String, DataInputStream, Integer> class1 = new Class1<>(t, v, k);
         class1.printTypes();
+
+        Number[] numArray = new Number[3];
+        numArray[0] = 1;
+        numArray[1] = 2.0f;
+        numArray[2] = 1565765876L;
+        MyList<Number> myList = new MyList<>(numArray);
+        myList.printList();
     }
 }
